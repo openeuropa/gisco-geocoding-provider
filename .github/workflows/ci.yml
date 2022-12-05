@@ -10,7 +10,6 @@ jobs:
                 composer_boundary: ["lowest", "highest"]
         env:
             PHP_VERSION: ${{ matrix.php_version }}
-            COMPOSER_BOUNDARY: ${{ matrix.composer_boundary }}
             DOCKER_USER_ID: "1001"
         steps:
             - name: clone
