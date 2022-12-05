@@ -7,8 +7,10 @@ jobs:
             fail-fast: false
             matrix:
                 php_version: ["8.0", "8.1"]
+                composer_boundary: ["lowest", "highest"]
         env:
             PHP_VERSION: ${{ matrix.php_version }}
+            COMPOSER_BOUNDARY: ${{ matrix.composer_boundary }}
             DOCKER_USER_ID: "1001"
         steps:
             - name: clone
@@ -17,8 +19,12 @@ jobs:
               run: docker-compose up -d
             - name: composer self-update
               run: docker-compose exec -T web composer self-update
+            - name: composer update --prefer-lowest
+              if: ${{ matrix.composer_boundary == 'lowest' }}
+              run: docker-compose exec -T web composer update --prefer-lowest --ansi
             - name: composer install
-              run: docker-compose exec -T web composer install
+              if: ${{ matrix.composer_boundary == 'highest' }}
+              run: docker-compose exec -T web composer install --ansi
             - name: phpcs
               run: docker-compose exec -T web vendor/bin/phpcs
             - name: phpunit
