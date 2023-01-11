@@ -1,5 +1,7 @@
 # GISCO Geolocation Provider
 
+[![ci](https://github.com/openeuropa/gisco-geocoding-provider/actions/workflows/ci.yml/badge.svg)](https://github.com/openeuropa/gisco-geocoding-provider/actions/workflows/ci.yml)
+
 This is a provider for the [Geocoder](https://github.com/geocoder-php/Geocoder)
 PHP library that integrates the Eurostat [GISCO](
 https://ec.europa.eu/eurostat/web/gisco) Geolocation service from the European
